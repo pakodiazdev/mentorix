@@ -4,10 +4,10 @@
 db = db.getSiblingDB('mentorix');
 
 db.createCollection('_init');
-db._init.insertOne({ initialized: true, date: new Date() });
+db.getCollection('_init').insertOne({ initialized: true, date: new Date() });
 
 // Create test database
 db = db.getSiblingDB('mentorix_test');
 
 db.createCollection('_init');
-db._init.insertOne({ initialized: true, date: new Date() });
+db.getCollection('_init').insertOne({ initialized: true, date: new Date() });

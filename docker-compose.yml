@@ -35,7 +35,7 @@ services:
     container_name: mentorix_webapp
     working_dir: /app/code/webapp
     ports:
-      - "${VITE_PORT:-5173}:5173"
+      - "${VITE_PORT:-5174}:5173"
     volumes:
       - ./code/webapp:/app/code/webapp
       - webapp_node_modules:/app/code/webapp/node_modules
@@ -49,8 +49,8 @@ services:
     image: nginx:alpine
     container_name: mentorix_nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - "${NGINX_HTTP_PORT:-8880}:80"
+      - "${NGINX_HTTPS_PORT:-8443}:443"
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
@@ -58,7 +58,7 @@ services:
       api:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-s", "http://127.0.0.1:80", "-o", "/dev/null"]
+      test: ["CMD", "curl", "-s", "http://127.0.0.1/", "-o", "/dev/null"]
       interval: 5s
       timeout: 3s
       retries: 10

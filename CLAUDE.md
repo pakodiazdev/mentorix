@@ -20,9 +20,9 @@ This monorepo runs inside Docker containers. Each sub-project maps to a containe
 | Sub-project     | Container          | Port  |
 | --------------- | ------------------ | ----- |
 | API (NestJS)    | `mentorix_api`     | 3000  |
-| Webapp (Vue 3)  | `mentorix_webapp`  | 5173  |
+| Webapp (Vue 3)  | `mentorix_webapp`  | 5174  |
 | MongoDB         | `mentorix_mongo`   | 27017 |
-| Nginx           | `mentorix_nginx`   | 80    |
+| Nginx           | `mentorix_nginx`   | 8880  |
 | Mongo Express   | `mentorix_mongo_express` | 8081 |
 
 ```bash
@@ -64,7 +64,7 @@ npm run test:e2e       # E2E tests
 
 ```bash
 cd code/webapp
-npm run dev            # Vite dev server at http://localhost:5173
+npm run dev            # Vite dev server at http://localhost:5174
 npm run build          # Production build
 npm run lint           # ESLint
 npm run typecheck      # TypeScript check (vue-tsc)
