@@ -1,0 +1,43 @@
+{
+  "name": "mentorix-webapp",
+  "version": "0.1.0",
+  "description": "Mentorix - School Group Attendance Management System Frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
+    "lint:fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "pinia": "^2.3.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vitejs/plugin-vue": "^5.2.0",
+    "@vue/eslint-config-prettier": "^10.1.0",
+    "@vue/eslint-config-typescript": "^14.2.0",
+    "@vue/test-utils": "^2.4.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^9.16.0",
+    "eslint-plugin-vue": "^9.31.0",
+    "jsdom": "^25.0.0",
+    "postcss": "^8.4.0",
+    "prettier": "^3.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "~5.7.0",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.0",
+    "vue-tsc": "^2.2.0"
+  }
+}

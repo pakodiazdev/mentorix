@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+!.env.example
+
+# IDE / Editor
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+mongo_data/
+
+# Coverage
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# SSL certificates
+docker/nginx/certs/*.pem
+docker/nginx/certs/*.crt
+docker/nginx/certs/*.key
