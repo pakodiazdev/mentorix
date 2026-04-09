@@ -17,7 +17,9 @@ describe("apiClient", () => {
   it("should add Authorization header when token exists", async () => {
     localStorage.setItem("token", "test-jwt-token");
 
-    const handler = apiClient.interceptors.request.handlers[0].fulfilled;
+    const handlers = apiClient.interceptors.request.handlers;
+    expect(handlers).toBeDefined();
+    const handler = handlers![0].fulfilled;
     const config = await handler({
       headers: {} as Record<string, string>,
     } as Parameters<typeof handler>[0]);
@@ -26,7 +28,9 @@ describe("apiClient", () => {
   });
 
   it("should not add Authorization header when no token exists", async () => {
-    const handler = apiClient.interceptors.request.handlers[0].fulfilled;
+    const handlers = apiClient.interceptors.request.handlers;
+    expect(handlers).toBeDefined();
+    const handler = handlers![0].fulfilled;
     const config = await handler({
       headers: {} as Record<string, string>,
     } as Parameters<typeof handler>[0]);
