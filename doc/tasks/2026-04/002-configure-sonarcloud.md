@@ -41,11 +41,11 @@ As a developer, I need SonarCloud integrated into the CI pipeline for both API a
 ### 📊 Estimates
 - **Optimistic:** `20m`
 - **Pessimistic:** `45m`
-- **Tracked:** `~25m`
+- **Tracked:** `~3h 45m`
 
 ### 📅 Sessions
 ```json
 [
-  { "date": "2026-04-09", "start": "00:00", "end": "00:25" }
+  { "date": "2026-04-09", "start": "19:00", "end": "22:45" }
 ]
 ```
