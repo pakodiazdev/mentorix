@@ -74,6 +74,7 @@
       "!**/main.ts"
     ],
     "coverageDirectory": "../coverage",
+    "coverageReporters": ["text", "lcov"],
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1"

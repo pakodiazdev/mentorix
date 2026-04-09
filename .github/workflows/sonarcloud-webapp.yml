@@ -1,0 +1,38 @@
+name: Webapp SonarCloud
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'code/webapp/**'
+  pull_request:
+    paths:
+      - 'code/webapp/**'
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: code/webapp
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: code/webapp/package-lock.json
+
+      - run: npm ci
+      - run: npm run test:cov
+
+      - uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectBaseDir: code/webapp
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_WEBAPP }}
+          SONAR_HOST_URL: https://sonarcloud.io
