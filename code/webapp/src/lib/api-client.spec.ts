@@ -7,7 +7,9 @@ describe("apiClient", () => {
   });
 
   it("should have the correct base URL", () => {
-    expect(apiClient.defaults.baseURL).toBe("http://localhost:3000/api/v1");
+    const expectedBaseUrl =
+      import.meta.env.VITE_API_URL || "http://localhost:3000/api/v1";
+    expect(apiClient.defaults.baseURL).toBe(expectedBaseUrl);
   });
 
   it("should have Content-Type header set to application/json", () => {
