@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { AppModule } from "./app.module";
-import { HealthModule } from "./health/health.module";
+import { HealthController } from "./health/health.controller";
 
 jest.mock("@nestjs/mongoose", () => {
   const original =
@@ -31,8 +31,8 @@ describe("AppModule", () => {
     expect(module).toBeDefined();
   });
 
-  it("should have health module", () => {
-    const healthModule = module.get(HealthModule, { strict: false });
-    expect(healthModule).toBeDefined();
+  it("should have HealthController from HealthModule", () => {
+    const controller = module.get(HealthController, { strict: false });
+    expect(controller).toBeDefined();
   });
 });

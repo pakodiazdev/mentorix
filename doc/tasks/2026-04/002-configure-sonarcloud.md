@@ -29,10 +29,10 @@ As a developer, I need SonarCloud integrated into the CI pipeline for both API a
 
 ## 🔗 References
 
-- SonarCloud organization: `jfcodiaz`
-- API project key: `jfcodiaz_mentorix-api`
-- Webapp project key: `jfcodiaz_mentorix-webapp`
-- Action: `SonarSource/sonarqube-scan-action@v5`
+- SonarCloud organization: `pakodiazdev-1`
+- API project key: `mentorix-api`
+- Webapp project key: `mentorix-webapp`
+- Action: `SonarSource/sonarqube-scan-action@v7`
 
 ---
 
