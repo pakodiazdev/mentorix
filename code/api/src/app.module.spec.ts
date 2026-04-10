@@ -2,6 +2,10 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { AppModule } from "./app.module";
 import { HealthController } from "./health/health.controller";
 
+process.env.JWT_SECRET = process.env.JWT_SECRET || "test-secret";
+process.env.JWT_REFRESH_SECRET =
+  process.env.JWT_REFRESH_SECRET || "test-refresh-secret";
+
 jest.mock("@nestjs/mongoose", () => {
   const original =
     jest.requireActual<typeof import("@nestjs/mongoose")>("@nestjs/mongoose");
