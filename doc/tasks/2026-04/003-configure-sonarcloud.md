@@ -1,4 +1,4 @@
-# Task #002 — Configure SonarCloud for monorepo
+# Task #003 — Configure SonarCloud for monorepo
 
 ## 📖 Story
 
