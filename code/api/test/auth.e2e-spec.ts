@@ -7,6 +7,8 @@ import { getConnectionToken } from "@nestjs/mongoose";
 
 process.env.JWT_REFRESH_SECRET =
   process.env.JWT_REFRESH_SECRET || "e2e-test-refresh-secret";
+process.env.ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@mentorix.com";
+process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Admin@1234";
 
 describe("Auth (e2e)", () => {
   let app: INestApplication;
