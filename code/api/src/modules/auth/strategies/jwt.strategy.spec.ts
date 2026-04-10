@@ -10,6 +10,7 @@ const mockUsersService = {
 
 const mockConfigService = {
   get: jest.fn().mockReturnValue("test-jwt-secret"),
+  getOrThrow: jest.fn().mockReturnValue("test-jwt-secret"),
 };
 
 const mockUser = {

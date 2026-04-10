@@ -127,7 +127,7 @@ describe("SeederService", () => {
       expect(mockUserModel.create).not.toHaveBeenCalled();
     });
 
-    it("should skip admin user creation when admin role does not exist", async () => {
+    it("should create admin user when roles are seeded successfully", async () => {
       mockConfigService.get.mockImplementation(
         (key: string, defaultVal: string) => {
           if (key === "SEED_DB") return "true";

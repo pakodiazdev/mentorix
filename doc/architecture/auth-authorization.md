@@ -1,7 +1,7 @@
 # 🔐 Authentication & Authorization Architecture
 
 ## Objective
-Document how authentication and authorization are implemented using NestJS, MongoDB, TypeORM, Passport, JWT, and RBAC + Policies.
+Document how authentication and authorization are implemented using NestJS, MongoDB, Mongoose, Passport, JWT, and RBAC + Policies.
 
 ---
 
@@ -152,7 +152,7 @@ Examples:
 ### Refresh Token
 - **Request**: `{ "refreshToken": string }`
 - **Response**: `{ "accessToken": string, "refreshToken": string }`
-- **Validation**: token signature + revocation list (Redis collection `revokedTokens`).
+- **Validation**: token signature verification. Token revocation list is planned for a future iteration.
 
 ### User DTO
 ```json
@@ -200,11 +200,11 @@ Errors bubble through Nest filters to ensure consistent JSON `{ "error": string,
 
 ## External Dependencies & Secrets
 
-- `MONGO_URI`: replica-set connection for TypeORM (per environment).
-- `JWT_ACCESS_SECRET` & `JWT_ACCESS_TTL` (minutes), `JWT_REFRESH_SECRET` & `JWT_REFRESH_TTL` (hours).
+- `MONGO_URI`: MongoDB connection string for Mongoose (per environment).
+- `JWT_SECRET` & `JWT_EXPIRATION` (seconds), `JWT_REFRESH_SECRET` & refresh TTL (hardcoded 7d currently).
 - `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` for each environment; store in secret manager, never in repo.
 - `AUTH_ALLOWED_DOMAIN`: optional domain restriction for Google logins.
-- `REDIS_URL`: session blacklist + rate limiting.
+- `REDIS_URL`: planned for rate limiting and token revocation (not yet implemented).
 - Secret rotation process: rotate refresh secret monthly; access secret weekly. Use `auth.secrets.rotate` permission to gate automation scripts.
 
 Document storage location for .env templates under `infra/environments/*.env.example`.

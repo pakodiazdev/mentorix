@@ -29,6 +29,7 @@ const mockJwtService = {
 
 const mockConfigService = {
   get: jest.fn().mockReturnValue("test-secret"),
+  getOrThrow: jest.fn().mockReturnValue("test-secret"),
 };
 
 describe("AuthService", () => {
@@ -93,7 +94,6 @@ describe("AuthService", () => {
     it("should create user and return tokens", async () => {
       mockUsersService.findByEmail.mockResolvedValue(null);
       mockUsersService.create.mockResolvedValue(mockUser);
-      mockUsersService.findById.mockResolvedValue(mockUser);
 
       const result = await service.register({
         email: "new@example.com",
