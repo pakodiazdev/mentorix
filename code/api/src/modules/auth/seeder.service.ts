@@ -159,10 +159,10 @@ export class SeederService implements OnModuleInit {
         .findOne({ name: perm.name })
         .exec();
       if (existing) {
-        map.set(perm.name, existing._id as Types.ObjectId);
+        map.set(perm.name, existing._id);
       } else {
         const created = await this.permissionModel.create(perm);
-        map.set(perm.name, created._id as Types.ObjectId);
+        map.set(perm.name, created._id);
         this.logger.log(`Created permission: ${perm.name}`);
       }
     }
@@ -184,13 +184,13 @@ export class SeederService implements OnModuleInit {
         .findOne({ name: roleDef.name })
         .exec();
       if (existing) {
-        map.set(roleDef.name, existing._id as Types.ObjectId);
+        map.set(roleDef.name, existing._id);
       } else {
         const created = await this.roleModel.create({
           name: roleDef.name,
           permissions: permIds,
         });
-        map.set(roleDef.name, created._id as Types.ObjectId);
+        map.set(roleDef.name, created._id);
         this.logger.log(`Created role: ${roleDef.name}`);
       }
     }
