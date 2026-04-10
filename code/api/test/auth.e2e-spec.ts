@@ -5,6 +5,9 @@ import { AppModule } from "../src/app.module";
 import { Connection } from "mongoose";
 import { getConnectionToken } from "@nestjs/mongoose";
 
+process.env.JWT_REFRESH_SECRET =
+  process.env.JWT_REFRESH_SECRET || "e2e-test-refresh-secret";
+
 describe("Auth (e2e)", () => {
   let app: INestApplication;
   let connection: Connection;

@@ -51,13 +51,12 @@ export class AuthService {
   async register(dto: RegisterDto): Promise<TokenPayload> {
     const existing = await this.usersService.findByEmail(dto.email);
     if (existing) {
-      throw new ConflictException("Email already registered");
+      throw new ConflictException("email_already_registered");
     }
 
     const user = await this.usersService.create(dto);
-    const populatedUser = await this.usersService.findById(String(user._id));
 
-    return this.generateTokens(populatedUser!);
+    return this.generateTokens(user);
   }
 
   async refreshToken(refreshToken: string): Promise<TokenPayload> {
@@ -65,10 +64,7 @@ export class AuthService {
       const payload = this.jwtService.verify<{ sub: string; email: string }>(
         refreshToken,
         {
-          secret: this.configService.get<string>(
-            "JWT_REFRESH_SECRET",
-            "default_refresh_secret",
-          ),
+          secret: this.configService.getOrThrow<string>("JWT_REFRESH_SECRET"),
         },
       );
 
@@ -78,7 +74,8 @@ export class AuthService {
       }
 
       return this.generateTokens(user);
-    } catch {
+    } catch (error) {
+      if (error instanceof UnauthorizedException) throw error;
       throw new UnauthorizedException("token_invalid_or_expired");
     }
   }
@@ -100,10 +97,7 @@ export class AuthService {
     const accessToken = this.jwtService.sign(payload);
 
     const refreshToken = this.jwtService.sign(payload, {
-      secret: this.configService.get<string>(
-        "JWT_REFRESH_SECRET",
-        "default_refresh_secret",
-      ),
+      secret: this.configService.getOrThrow<string>("JWT_REFRESH_SECRET"),
       expiresIn: "7d" as const,
     });
 

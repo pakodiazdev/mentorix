@@ -201,20 +201,28 @@ export class SeederService implements OnModuleInit {
   private async seedAdminUser(
     roleMap: Map<string, Types.ObjectId>,
   ): Promise<void> {
+    const defaultEmail = "admin@mentorix.com";
+    const defaultPassword = "Admin@1234";
     const adminEmail = this.configService.get<string>(
       "ADMIN_EMAIL",
-      "admin@mentorix.com",
+      defaultEmail,
     );
+    const adminPassword = this.configService.get<string>(
+      "ADMIN_PASSWORD",
+      defaultPassword,
+    );
+
+    if (adminEmail === defaultEmail || adminPassword === defaultPassword) {
+      this.logger.warn(
+        "Using default admin credentials. Set ADMIN_EMAIL and ADMIN_PASSWORD environment variables for production.",
+      );
+    }
+
     const existing = await this.userModel.findOne({ email: adminEmail }).exec();
     if (existing) return;
 
     const adminRoleId = roleMap.get("admin");
     if (!adminRoleId) return;
-
-    const adminPassword = this.configService.get<string>(
-      "ADMIN_PASSWORD",
-      "Admin@1234",
-    );
     const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
     await this.userModel.create({

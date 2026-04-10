@@ -64,10 +64,10 @@ describe("UsersService", () => {
 
   describe("validatePassword", () => {
     it("should return false for mismatched password", async () => {
-      const result = await service.validatePassword(
-        "wrong",
-        "$2a$10$aqKLxkHGlJ7L...",
+      const validHash = await import("bcryptjs").then((b) =>
+        b.hashSync("correct", 10),
       );
+      const result = await service.validatePassword("wrong", validHash);
       expect(result).toBe(false);
     });
   });
