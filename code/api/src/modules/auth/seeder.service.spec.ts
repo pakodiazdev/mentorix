@@ -26,6 +26,7 @@ const mockUserModel = {
 
 const mockConfigService = {
   get: jest.fn(),
+  getOrThrow: jest.fn(),
 };
 
 describe("SeederService", () => {
@@ -66,11 +67,14 @@ describe("SeederService", () => {
       mockConfigService.get.mockImplementation(
         (key: string, defaultVal: string) => {
           if (key === "SEED_DB") return "true";
-          if (key === "ADMIN_EMAIL") return "admin@mentorix.com";
-          if (key === "ADMIN_PASSWORD") return "Admin@1234";
           return defaultVal;
         },
       );
+      mockConfigService.getOrThrow.mockImplementation((key: string) => {
+        if (key === "ADMIN_EMAIL") return "admin@mentorix.com";
+        if (key === "ADMIN_PASSWORD") return "Admin@1234";
+        throw new Error(`Missing key: ${key}`);
+      });
 
       const permId = createObjectId();
       mockPermissionModel.findOne.mockReturnValue({
@@ -100,11 +104,14 @@ describe("SeederService", () => {
       mockConfigService.get.mockImplementation(
         (key: string, defaultVal: string) => {
           if (key === "SEED_DB") return "true";
-          if (key === "ADMIN_EMAIL") return "admin@mentorix.com";
-          if (key === "ADMIN_PASSWORD") return "Admin@1234";
           return defaultVal;
         },
       );
+      mockConfigService.getOrThrow.mockImplementation((key: string) => {
+        if (key === "ADMIN_EMAIL") return "admin@mentorix.com";
+        if (key === "ADMIN_PASSWORD") return "Admin@1234";
+        throw new Error(`Missing key: ${key}`);
+      });
 
       const existingPermId = createObjectId();
       mockPermissionModel.findOne.mockReturnValue({
@@ -131,11 +138,14 @@ describe("SeederService", () => {
       mockConfigService.get.mockImplementation(
         (key: string, defaultVal: string) => {
           if (key === "SEED_DB") return "true";
-          if (key === "ADMIN_EMAIL") return "admin@mentorix.com";
-          if (key === "ADMIN_PASSWORD") return "Admin@1234";
           return defaultVal;
         },
       );
+      mockConfigService.getOrThrow.mockImplementation((key: string) => {
+        if (key === "ADMIN_EMAIL") return "admin@mentorix.com";
+        if (key === "ADMIN_PASSWORD") return "Admin@1234";
+        throw new Error(`Missing key: ${key}`);
+      });
 
       const permId = createObjectId();
       mockPermissionModel.findOne.mockReturnValue({
